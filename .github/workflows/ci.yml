@@ -1,0 +1,31 @@
+name: CI - PHP & Static Site
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+
+    - name: PHP lint
+      run: php -l index.php
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: site-files
+        path: |
+          index.php
+          index.html
