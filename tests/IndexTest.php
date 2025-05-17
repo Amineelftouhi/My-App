@@ -8,6 +8,6 @@ class IndexTest extends TestCase {
         include 'index.php'; // Run the file
         $output = ob_get_clean(); // Get the output
 
-        $this->assertStringContainsString("Hello Simo", $output);
+        $this->assertStringContainsString("welcome to my app ", $output);
     }
 }

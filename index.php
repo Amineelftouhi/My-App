@@ -1,5 +1,5 @@
 "<?php
 
-echo "welcome to my-app!";
+echo "welcome to my app ";
 
 ?>" 
