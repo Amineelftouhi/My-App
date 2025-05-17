@@ -1,31 +1,20 @@
-name: CI - PHP & Static Site
+name: CI - Docker PHP Test
 
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
-  build-test:
+  php-tests:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.2'
+      - name: Build Docker image
+        run: docker build -t php-app .
 
-    - name: PHP lint
-      run: php -l index.php
+      - name: Run PHPUnit tests
+        run: docker run --rm php-app vendor/bin/phpunit tests
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: site-files
-        path: |
-          index.php
-          index.html
