@@ -1,1 +1,5 @@
-"<?php echo 'hello !'; ?>" 
+"<?php
+
+echo "welcome to my-app!";
+
+?>" 

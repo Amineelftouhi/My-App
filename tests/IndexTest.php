@@ -3,7 +3,11 @@
 use PHPUnit\Framework\TestCase;
 
 class IndexTest extends TestCase {
-    public function testBasic() {
-        $this->assertEquals(1 + 1, 2);
+    public function testIndexOutput() {
+        ob_start(); // Start capturing output
+        include 'index.php'; // Run the file
+        $output = ob_get_clean(); // Get the output
+
+        $this->assertStringContainsString("Hello Simo", $output);
     }
 }
